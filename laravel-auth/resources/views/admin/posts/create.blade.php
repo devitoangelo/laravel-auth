@@ -5,11 +5,10 @@
     <header class="py-3 bg-dark text-white">
         <div class="container d-flex align-items-center justify-content-between">
             <h1>Writing post</h1>
-            <a class="btn btn-primary" href="{{ route('admin.posts.create') }}">New Post</a>
         </div>
     </header>
 
-    <div class="container " style="margin-top: 1rem">
+    <div class="container" style="margin-top: 1rem">
 
 
         @if ($errors->any())

@@ -43,7 +43,7 @@ class PostController extends Controller
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
         // dd($validated);
-        Post::created($validated);
+        Post::create($validated);
         return to_route('admin.posts.index');
     }
 
