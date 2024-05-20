@@ -24,7 +24,11 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
+
     {
+
+        
         return view('admin.posts.create');
     }
 
@@ -36,9 +40,9 @@ class PostController extends Controller
 
         $validated = $request->validated();
         // dd($validated);
-        $slug = str::slug($request->title, '-');
+        $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
-        // dd($slug, $validated);
+        // dd($validated);
         Post::created($validated);
         return to_route('admin.posts.index');
     }

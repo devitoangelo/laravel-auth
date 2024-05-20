@@ -29,7 +29,7 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control"@error('title') is-invalid @enderror name="title" id="title" aria-describedby="titlehelpId"
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" aria-describedby="titlehelpId"
                     placeholder="title" value="{{old('title')}}" />
                 <small id="titlehelpId" class="form-text text-muted">Type a title for post </small>
                 @error('title')
@@ -54,7 +54,7 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <textarea class="form-control" @error('content') is_invalid @enderror name="content" id="content" rows="5"></textarea>
+                <textarea class="form-control @error('content') is_invalid @enderror"  name="content" id="content" rows="5"></textarea>
                 @error('title')
                 <div class="text-danger py-2">
                     {{$message}}
