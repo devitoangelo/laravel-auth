@@ -6,6 +6,8 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
@@ -14,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-    
-        return view('admin.posts.index', ['posts'=> Post::orderByDesc('id')->paginate(8)]);
+
+        return view('admin.posts.index', ['posts' => Post::orderByDesc('id')->paginate(8)]);
     }
 
     /**
@@ -23,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -31,7 +33,14 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+
+        $validated = $request->validated();
+        // dd($validated);
+        $slug = str::slug($request->title, '-');
+        $validated['slug'] = $slug;
+        // dd($slug, $validated);
+        Post::created($validated);
+        return to_route('admin.posts.index');
     }
 
     /**

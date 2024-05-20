@@ -5,6 +5,8 @@
     <header class="py-3 bg-dark text-white">
         <div class="container">
             <h1>{{ $post->title }}</h1>
+
+    
         </div>
     </header>
 
