@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -43,6 +44,9 @@ class PostController extends Controller
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
         // dd($validated);
+           $image_path = Storage::put('uploads', $validated['cover_image']);
+        //    dd($image_path); 
+
         Post::create($validated);
         return to_route('admin.posts.index')->with('message', 'Post created successfully');;
     }
@@ -72,7 +76,6 @@ class PostController extends Controller
         $validated = $request->validated();
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
-        // dd($validated);
         $post->update($validated);
         return to_route('admin.posts.index')->with('message', "Post $post->title update successfully");
 
